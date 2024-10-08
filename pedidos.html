@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow:wght@400&family=Rubik+Mono+One:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            background: url('./imagens/background.png');
+            background-size: cover;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: transparent;
+        }
+
+        .navbar img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .navbar a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: white;
+            font-family: 'Ribeye Marrow', cursive;
+            font-size: 50px;
+            line-height: 68.31px;
+        }
+
+        .navbar a:hover {
+            color: #b8860b;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -254px;
+            width: 254px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            transition: left 0.3s;
+            z-index: 1000;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .sidebar img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 20px 0;
+            font-family: 'Rubik Mono One', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24.76px;
+            text-align: left;
+            padding: 10px 0;
+        }
+
+        .sidebar a:not(:last-child) {
+            border-bottom: 1px solid #FFFFFF;
+        }
+
+        .sidebar .back {
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        .sidebar.open {
+            left: 0;
+            opacity: 1;
+        }
+
+        .content {
+            padding: 50px 20px;
+        }
+
+        .order-summary {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .order-summary h2,
+        .order-summary h3 {
+            margin: 0;
+            padding: 10px 0;
+            font-family: 'Rubik Mono One', sans-serif;
+        }
+
+        .order-summary .item,
+        .order-summary .total {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+
+        .order-summary .total {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .order-summary .payment-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #b8860b;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <img alt="Profile picture of a person" src="./imagens/perfil.png" onclick="toggleSidebar()" />
+        <a href="home.html">Home</a>
+        <a href="cardapio.html">Cardápio</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="contato.html">Contato</a>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <img alt="Profile picture of a person" src="./imagens/perfil.png" />
+        <a href="notificacao.html">NOTIFICAÇÕES</a>
+        <a href="clubCompany.html">CLUB COMPANY</a>
+        <a href="historico.html">HISTÓRICO</a>
+        <div class="back" onclick="toggleSidebar()">
+            <i class="fas fa-angle-double-left"></i>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="order-summary" id="order-summary-container">
+            <h2>Pedido Em Andamento <span style="float: right;">N 354</span></h2>
+            <div id="order-items"></div>
+            <h3>RESUMO DE VALORES</h3>
+            <div class="item">
+                <span>Subtotal</span>
+                <span>R$ <span id="subtotal">0.00</span></span>
+            </div>
+            <div class="item">
+                <span>Taxa De Entrega</span>
+                <span>GRATIS</span>
+            </div>
+            <div class="total">
+                <span>Total</span>
+                <span>R$ <span id="total">0.00</span></span>
+            </div>
+            <button class="payment-button">Forma De Pagamento</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        const itens = [
+            { quantidade: 2, nome: 'Quarterão com Queijo', preco: 19.90 },
+            { quantidade: 1, nome: 'Chicken Deluxe', preco: 24.90 },
+            { quantidade: 1, nome: 'Coca-Cola', preco: 5.00 }
+        ];
+
+        const orderItemsContainer = document.getElementById('order-items');
+        let subtotal = 0;
+
+        itens.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('item');
+            itemDiv.innerHTML = `<span>${item.quantidade} - ${item.nome}</span><span>R$ ${item.preco.toFixed(2)}</span>`;
+            orderItemsContainer.appendChild(itemDiv);
+            subtotal += item.quantidade * item.preco;
+        });
+
+        document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+        document.getElementById('total').innerText = subtotal.toFixed(2);
+    </script>
+</body>
+
+</html>

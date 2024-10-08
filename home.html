@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Company</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow:wght@400&family=Rubik+One:wght@400&family=Rubik+Mono+One:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <style>
+        html,
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('./imagens/background.png');
+            background-size: cover;
+            color: white;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .plan {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: transparent;
+        }
+
+        .navbar img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-family: 'Ribeye Marrow', cursive;
+            font-size: 50px;
+            line-height: 68.31px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #b8860b;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 90px);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .text {
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .image-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .content h1 {
+            font-family: 'Rubik One', sans-serif;
+            font-size: 50px;
+            font-weight: 400;
+            line-height: 61.9px;
+            margin: 0;
+            border: 2px solid white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .content p {
+            font-family: 'Rubik One', sans-serif;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 37.14px;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .content .button {
+            background-color: #b8860b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Rubik One', sans-serif;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 37.14px;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .content .button:hover {
+            background-color: #cda74e;
+            transform: scale(1.05);
+        }
+
+        .burger-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -254px;
+            width: 80%;
+            max-width: 254px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            transition: left 0.3s;
+            z-index: 1000;
+            overflow-y: auto;
+            opacity: 0;
+        }
+
+        .sidebar img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 20px 0;
+            font-family: 'Rubik Mono One', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24.76px;
+            text-align: left;
+            padding: 10px 0;
+        }
+
+        .sidebar a:not(:last-child) {
+            border-bottom: 1px solid #FFFFFF;
+        }
+
+        .sidebar .back {
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        .sidebar.open {
+            left: 0;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navbar a {
+                font-size: 40px;
+            }
+
+            .burger-image {
+                margin: 0 0 20px 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="plan">
+    <div class="navbar">
+        <img alt="Profile picture of a person" src="./imagens/perfil.png" onclick="toggleSidebar()" />
+        <a href="home.html">Home</a>
+        <a href="cardapio.html">Cardápio</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="contato.html">Contato</a>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <img alt="Profile picture of a person" src="./imagens/perfil.png" />
+        <a href="notificacao.html">NOTIFICAÇÕES</a>
+        <a href="clubCompany.html">CLUB COMPANY</a>
+        <a href="historico.html">HISTÓRICO</a>
+        <div class="back" onclick="toggleSidebar()">
+            <i class="fas fa-angle-double-left"></i>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="image-button-container">
+                <img alt="Delicious burger with flames in the background" class="burger-image"
+                    src="./imagens/hamburguerQueimando.png" />
+                <a class="button" href="cardapio.html">Peça Agora!</a>
+            </div>
+            <div class="text">
+                <h1>SINTA O SABOR, VIVA A EXPÊRIENCIA</h1>
+                <p>INGREDIENTES SELECIONADOS E ELABORADOS POR CHEFS NOTÁVEIS!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

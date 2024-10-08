@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cadastre-se</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow:wght@400&family=Rubik+One:wght@400&family=Rubik+Mono+One:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <style>
+        body {
+            background-image: url("./imagens/background.png");
+            font-family: 'Rubik One', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-family: 'Ribeye Marrow', cursive;
+            font-size: 48px;
+            margin-bottom: 50px;
+        }
+
+        .input-field {
+            background-color: rgba(145, 102, 0, 0.9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 24px;
+            margin: 10px 0;
+            cursor: text;
+            width: 300px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .input-field:hover {
+            background-color: rgba(145, 102, 0, 1);
+        }
+
+        .arrow {
+            margin-top: 50px;
+            font-size: 48px;
+            color: white;
+            text-decoration: none;
+        }
+
+        input {
+            outline: none;
+            color: white;
+        }
+
+        input::placeholder {
+            color: white;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CADASTRO</h1>
+        <input class="input-field" type="text" placeholder="Nome"><br>
+        <input class="input-field" type="text" placeholder="CPF"><br>
+        <input class="input-field" type="tel" placeholder="Telefone"><br>
+        <input class="input-field" type="email" placeholder="E-mail"><br>
+        <input class="input-field" type="password" placeholder="Senha"><br>
+        <a href="home.html" class="arrow">&#10095;&#10095;</a>
+    </div>
+</body>
+
+</html>

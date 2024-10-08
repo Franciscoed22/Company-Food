@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação De Senha</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <style>
+        body {
+            background-image: url("./imagens/background.png");
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            background-color: #916600;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.2em;
+            padding: 15px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 400px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .input-field:focus {
+            background-color: #a57a00;
+            outline: none;
+        }
+
+        ::placeholder {
+            color: white;
+            opacity: 1;
+        }
+
+        .button {
+            background-color: #333333;
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.2em;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #444444;
+        }
+
+        .back-arrow {
+            color: white;
+            margin-top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Recuperação De Senha</h1>
+        <p>Digite seu número de telefone ou e-mail de recuperação</p>
+        <input class="input-field" placeholder="Número de telefone ou e-mail" type="text">
+        <br>
+        <a href="home.html" class="button">RECUPERAR</a>
+        <div><a href="pagina1.html" class="back-arrow">Voltar</a></div>
+    </div>
+</body>
+
+</html>

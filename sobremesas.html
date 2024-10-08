@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Sobremesas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow:wght@400&family=Rubik+One:wght@400&family=Rubik+Mono+One:wght@400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            background: url('./imagens/background.png');
+            background-size: cover;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: transparent;
+        }
+
+        .navbar img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .navbar a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: white;
+            font-family: 'Ribeye Marrow', cursive;
+            font-size: 50px;
+            line-height: 68.31px;
+        }
+
+        .navbar a:hover {
+            color: #b8860b;
+        }
+
+        .title {
+            font-size: 48px;
+            font-family: 'Rubik One', sans-serif;
+            margin: 20px 0;
+        }
+
+        .menu {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .menu-item {
+            flex: 0 0 auto;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+            margin: 10px;
+            width: 200px;
+            scroll-snap-align: center;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .menu-item p {
+            font-family: 'Rubik Mono One', sans-serif;
+            font-size: 20px;
+            margin: 10px 0 0;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -254px;
+            width: 254px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            transition: left 0.3s;
+            z-index: 1000;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .sidebar img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 20px 0;
+            font-family: 'Rubik Mono One', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24.76px;
+            text-align: left;
+            padding: 10px 0;
+        }
+
+        .sidebar a:not(:last-child) {
+            border-bottom: 1px solid #FFFFFF;
+        }
+
+        .sidebar .back {
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        .sidebar.open {
+            left: 0;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img alt="Profile picture" src="./imagens/perfil.png" onclick="toggleSidebar()"/>
+        <a href="home.html">Home</a>
+        <a class="active" href="cardapio.html">Cardápio</a>
+        <a href="pedidos.html">Pedidos (<span id="cart-count">0</span>)</a>
+        <a href="contato.html">Contato</a>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <img alt="Profile picture" src="./imagens/perfil.png"/>
+        <a href="notificacao.html">NOTIFICAÇÕES</a>
+        <a href="clubCompany.html">CLUB COMPANY</a>
+        <a href="historico.html">HISTÓRICO</a>
+        <div class="back" onclick="toggleSidebar()">
+            <i class="fas fa-angle-double-left"></i>
+        </div>
+    </div>
+
+    <div class="title">Sobremesas</div>
+    <div class="menu">
+        <div class="menu-item" onclick="addToCart('Sundae de Chocolate')">
+            <img alt="Sundae de Chocolate" src="./imagens/SundaeChocolate.png"/>
+            <p>Sundae de Chocolate</p>
+        </div>
+        <div class="menu-item" onclick="addToCart('Top Sundae de Morango')">
+            <img alt="Top Sundae de Morango" src="./imagens/TopSundaeMorango.png"/>
+            <p>Top Sundae de Morango</p>
+        </div>
+        <div class="menu-item" onclick="addToCart('Sundae de Morango')">
+            <img alt="Sundae de Morango" src="./imagens/SundaeMorango.png"/>
+            <p>Sundae de Morango</p>
+        </div>
+        <div class="menu-item" onclick="addToCart('Combo MAC')">
+            <img alt="Combo MAC" src="./imagens/ComboMAC.png"/>
+            <p>Combo MAC</p>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(item) {
+            cart.push(item); // Adiciona o item ao carrinho
+            updateCartCount(); // Atualiza a contagem no carrinho
+        }
+
+        function updateCartCount() {
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.innerText = cart.length; // Atualiza a contagem de itens no carrinho
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+	function addToCart(item) {
+    cart.push(item);
+    updateCartCount();
+    showAlert(`${item} foi adicionado ao carrinho!`);
+}
+
+function showAlert(message) {
+    const alertBox = document.createElement('div');
+    alertBox.innerText = message;
+    alertBox.style.position = 'fixed';
+    alertBox.style.top = '20px';
+    alertBox.style.right = '20px';
+    alertBox.style.backgroundColor = '#28a745';
+    alertBox.style.color = 'white';
+    alertBox.style.padding = '10px';
+    alertBox.style.borderRadius = '5px';
+    alertBox.style.zIndex = '1000';
+    
+    document.body.appendChild(alertBox);
+    
+    setTimeout(() => {
+        alertBox.remove();
+    }, 3000);
+}
+
+    </script>
+</body>
+</html>
